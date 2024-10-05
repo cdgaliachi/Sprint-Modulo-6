@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+body {
+	min-height: 118dvh;
+}
+
+.bod-img {
+	/*             background-color: rgba(33,36,39,1); Cambia esto a la ruta de tu imagen */
+	/* 			background-image:url('${pageContext.request.contextPath}/res/img/sharepoint-training-8112055_1920.jpg') */
+	background-color: #333639;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	color: #ffffff; /* Color de texto blanco para contraste */
+	height: 100vh; /* Altura del viewport */
+	width: 100%; /* Ancho completo */
+}
+
+.imgbglog {
+	height: -webkit-fill-available;
+}
+
+.container-login {
+	background-color: rgba(0, 0, 0, 0.7);
+	/* Fondo oscuro con transparencia */
+	border-radius: 10px;
+}
+
+.card {
+	background-color: #333333; /* Fondo oscuro para la tarjeta */
+	color: #000000;
+	/*realicé cambio de blanco a negro porque no se veian ciertos formularios*/
+	width: 80vh;
+}
+
+.btn-primary {
+	background-color: #007bff;
+	border-color: #007bff;
+}
+
+.btn-primary:hover {
+	background-color: #0056b3;
+	border-color: #004085;
+}
+
+main {
+	min-height: 100dvh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
+
+.mainlog {
+	padding-top: 30dvh;
+	padding-right: 134dvh;
+	place-content: stretch;
+}
+
+.subtable {	justify-self: center;	min-width: -webkit-fill-available;	}
+
+#contcard {
+	margin-top: 18dvh;
+	margin-left: 4dvh;
+}
+
+.textdl {
+	color: #dcdcdc
+}
+
+.visittbody { background-color:#f7f2dfd6}
+
+.bg-osc {
+	background-color: rgb(59 62 65/ 69%)	!important;
+}
+
+.bg-osc2 {
+	background-color: #2f363db0 	!important;
+}
+
+.bg-lil {
+	background-color: rgb(189 193 197/ 93%)
+}
+
+.bg-opc {
+	background-color: #16181a
+}
+
+/* ajustes de las cards en inicio  */
+.rowcards {
+	contain: content;
+}
+
+.cardbod {
+	content-visibility: auto;
+}
+
+.cardfit {
+	max-width: fit-content;
+}
+
+.table-responsive {   padding: 1rem;	}
+
+.table {	width: 100%;
+            max-width: none;
+        }
+        
+.table th, .table td {	padding: 1rem;}
+
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+    .card {
+        width: 90vw; /* Usamos viewport width para pantallas pequeñas */
+    }
+
+    .mainlog {
+        padding-top: 10dvh;
+        padding-right: 0; /* Sin espacio extra en móviles */
+    }
+
+    #contcard {
+        margin-top: 10dvh;
+        margin-left: 1dvh;
+    }
+
+    .bod-img {
+        background-attachment: scroll; /* Evita el fixed en pantallas pequeñas para mejor rendimiento */
+    }
+}
+
+/* Responsivo para pantallas muy pequeñas, como móviles pequeños */
+@media (max-width: 480px) {
+    .card {
+        width: 95vw; /* Tarjeta más pequeña para pantallas muy pequeñas */
+    }
+
+    .mainlog {
+        padding-top: 5dvh;
+        padding-right: 0;
+    }
+
+    #contcard {
+        margin-top: 8dvh;
+        margin-left: 0;
+    }
+}

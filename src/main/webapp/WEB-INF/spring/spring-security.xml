@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns:bean="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.springframework.org/schema/security"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!-- Configuración de seguridad HTTP -->
+    <http auto-config="true">
+        <!-- Acceso público a la página principal -->
+        <intercept-url pattern="/" access="hasAnyAuthority('CLIENTE', 'PROFESIONAL', 'ADMINISTRATIVO')" />
+        <intercept-url pattern="/login" access="permitAll" />
+        <intercept-url pattern="/contacto" access="hasAuthority('CLIENTE')"  />
+        <intercept-url pattern="/capacitaciones/crear" access="hasAuthority('CLIENTE')"  />
+        <intercept-url pattern="/capacitaciones/listar" access="hasAuthority('CLIENTE')"  />
+		<intercept-url pattern="/usuario/crear" access="hasAuthority('ADMINISTRATIVO')"  />
+		<intercept-url pattern="/usuario/listar" access="hasAuthority('ADMINISTRATIVO')"  />
+		<intercept-url pattern="/visitas" access="hasAuthority('PROFESIONAL')"  />
+		<intercept-url pattern="/checklist" access="hasAuthority('PROFESIONAL')"  />
+		<intercept-url pattern="/pago/listar" access="hasAuthority('ADMINISTRATIVO')"  />
+		<intercept-url pattern="/pago/crear" access="hasAuthority('ADMINISTRATIVO')"  />
+          
+        <form-login 
+        	login-page="/login"
+        	login-processing-url="/perform_login"
+   			default-target-url="/"
+   			authentication-failure-url="/login?error=true"
+   			username-parameter="username"
+   			password-parameter="password"
+   		/>
+   		
+        <!-- Configuración de cierre de sesión -->
+        <logout 
+            logout-url="/logout" 
+            logout-success-url="/" 
+            invalidate-session="true" 
+            delete-cookies="JSESSIONID" />
+            
+    	<!-- Configuración para manejar acceso denegado -->
+        <access-denied-handler error-page="/acceso-denegado" />
+        <csrf disabled="true"/>
+    </http>
+
+    <!-- Configuración del gestor de autenticación -->
+    <authentication-manager>
+        <authentication-provider>
+            <!-- Codificador de contraseñas BCrypt -->
+            <password-encoder hash="bcrypt" />
+            <user-service>
+                <!-- Usuarios en memoria -->
+                <!-- Contraseña original: 123456 -->
+                <user name="Admin" authorities="ADMIN" password="$2a$10$KX9Fy27757mCJ7NIvhU79.aprzKN/UAQrkuhjgHLgJAnpsKrTaa7q" />
+                <!-- Contraseña original: 1230 -->
+                <user name="CLIENTE" authorities="CLIENTE" password="$2a$10$z7p.6Bq7pIPTEsiU/dmWV.NFLaKOu04tpg4Ndpwn9cxzNfDyQFLN." />
+                <!-- Contraseña original: 1230 -->
+                <user name="PROFESIONAL" authorities="PROFESIONAL" password="$2a$10$z7p.6Bq7pIPTEsiU/dmWV.NFLaKOu04tpg4Ndpwn9cxzNfDyQFLN." />
+                <!-- Contraseña original: 1230 -->
+                <user name="ADMINISTRATIVO" authorities="ADMINISTRATIVO" password="$2a$10$z7p.6Bq7pIPTEsiU/dmWV.NFLaKOu04tpg4Ndpwn9cxzNfDyQFLN." />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+
+</bean:beans>

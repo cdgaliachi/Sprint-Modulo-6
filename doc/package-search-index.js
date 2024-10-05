@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"grupo4.sprint6.controladores"},{"l":"grupo4.sprint6.modelos"},{"l":"grupo4.sprint6.repositorios"},{"l":"grupo4.sprint6.services"}];updateSearchResults();
